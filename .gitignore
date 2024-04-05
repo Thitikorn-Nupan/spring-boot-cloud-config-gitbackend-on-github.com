@@ -1,0 +1,49 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ROBOT MIRCRO
+!**/robot-microservice/.mvn
+!**/robot-microservice/target
+!**/robot-microservice/HELP.md
+!**/robot-microservice/mvnw*
+!**/robot-microservice/.gitignore
+!**/robot-microservice/src/main/resources/info
+
+# ADDRESS MIRCRO
+!**/address-microservice/.mvn
+!**/address-microservice/mvnw*
+!**/address-microservice/target
+!**/address-microservice/.gitignore
+!**/address-microservice/HELP.md
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
