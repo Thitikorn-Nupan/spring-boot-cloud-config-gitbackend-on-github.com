@@ -2,17 +2,18 @@ package com.ttknpdev.service.dao;
 
 import com.ttknpdev.service.entity.Robot;
 import com.ttknpdev.service.repository.RobotRepository;
-import com.ttknpdev.service.service.RobotService;
+import com.ttknpdev.service.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RobotDao implements RobotService<Robot> {
-    private RobotRepository robotRepository;
+public class CommonDao implements CommonService<Robot> {
+    private final RobotRepository robotRepository;
+
     @Autowired
-    public RobotDao(RobotRepository robotRepository) {
+    public CommonDao(RobotRepository robotRepository) {
         this.robotRepository = robotRepository;
     }
 
@@ -23,14 +24,14 @@ public class RobotDao implements RobotService<Robot> {
 
     @Override
     public Robot read(Long id) {
-        // if not exist it will throw error
-        return robotRepository.findById(id).orElseThrow();
+        return robotRepository.findById(id).orElseThrow();   // if not exist it will throw error
     }
 
     @Override
     public Robot create(Robot obj) {
         return robotRepository.save(obj);
     }
+
     // basic for any robot id did not exist i set to throw error
     @Override
     public Robot update(Robot obj, Long id) {
@@ -40,7 +41,7 @@ public class RobotDao implements RobotService<Robot> {
             robot.setReleaseDate(obj.getReleaseDate());
             robot.setStatus(obj.getStatus());
             return robotRepository.save(robot);
-        }).orElseThrow();
+        }).orElseThrow(() -> null);
     }
 
     @Override
@@ -48,6 +49,6 @@ public class RobotDao implements RobotService<Robot> {
         return robotRepository.findById(id).map(robot -> {
             robotRepository.delete(robot);
             return true;
-        }).orElseThrow();
+        }).orElseThrow(() -> null);
     }
 }

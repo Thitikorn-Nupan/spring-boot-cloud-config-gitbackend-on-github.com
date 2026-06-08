@@ -1,9 +1,8 @@
 package com.ttknpdev.service.service;
 
-
 import java.util.List;
 
-public interface RobotService<T> {
+public interface CommonService<T> {
     List<T> reads();
     T read(Long id);
     T create(T obj);

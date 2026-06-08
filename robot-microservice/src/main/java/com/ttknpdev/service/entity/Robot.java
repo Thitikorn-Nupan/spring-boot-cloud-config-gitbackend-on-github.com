@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "robots2")
+@Table(name = "robots_2")
 public class Robot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//   auto_increment
