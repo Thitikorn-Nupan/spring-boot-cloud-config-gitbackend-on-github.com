@@ -4,7 +4,6 @@ import com.ttknpdev.client.entities.Address;
 import com.ttknpdev.client.entities.Provider;
 import com.ttknpdev.client.service.AddressServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,17 +18,16 @@ import java.util.List;
 @RequestMapping(value = "/address")
 public class RouterClientAddressController {
 
-    private Provider provider;
-    private AddressServiceResponse addressServiceResponse;
-
+    private final Provider provider;
+    private final AddressServiceResponse addressServiceResponse;
 
     @Value("${address.url}")
     private String addressUrl;
 
     @Autowired // inject my bean for access properties file
-    public RouterClientAddressController(Provider provider , AddressServiceResponse addressServiceResponse) {
+    public RouterClientAddressController(Provider provider, AddressServiceResponse addressServiceResponse) {
         this.provider = provider;
-        this.addressServiceResponse =addressServiceResponse;
+        this.addressServiceResponse = addressServiceResponse;
     }
 
     @GetMapping(value = "/domain") // access gitbackend-server.properties
@@ -56,7 +54,7 @@ public class RouterClientAddressController {
 
     @GetMapping(value = "/reads")
     private ResponseEntity<List<Address>> retrieveAllAddressFromGitBackendServer() {
-        List<Address> addresses = addressServiceResponse.reads(addressUrl+"/reads");
+        List<Address> addresses = addressServiceResponse.reads(addressUrl + "/reads");
         return ResponseEntity
                 .ok()
                 .body(addresses);
@@ -64,7 +62,7 @@ public class RouterClientAddressController {
 
     @GetMapping(value = "/read/{id}")
     private ResponseEntity<Address> retrieveAddressFromGitBackendServer(@PathVariable Long id) {
-        Address address = addressServiceResponse.read(addressUrl+"/read/"+id);
+        Address address = addressServiceResponse.read(addressUrl + "/read/" + id);
         return ResponseEntity
                 .ok()
                 .body(address);

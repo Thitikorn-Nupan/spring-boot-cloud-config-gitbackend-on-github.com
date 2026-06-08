@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Directory for file logs; override via system property: -DLOG_DIR=/var/log/myapp -->
+    <property name="LOG_DIR" value="logs" />
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- color good for console but it's not in file -->
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level [%thread] %logger{36} : %msg%n%throwable</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!--<file> B:/senior-projects-for-sale/maintenance-system-backend-modify/logs</file> -->  <!-- on local -->
+        <file>${LOG_DIR}/application.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level [%thread] %logger{36} : %msg%n%throwable</pattern>
+        </encoder>
+        <!-- set size of file -->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>30MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <!-- Set root logging level; add or remove appender refs as needed -->
+    <root level="INFO,DEBUG,ERROR">
+        <appender-ref ref="CONSOLE" />
+        <!-- Uncomment to enable file logging -->
+        <!-- <appender-ref ref="FILE" /> -->
+    </root>
+</configuration>

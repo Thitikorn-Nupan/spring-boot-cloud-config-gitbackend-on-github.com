@@ -7,10 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties("provider") // use it then you dont use @Value() annotation
 public class Provider {
-    // -> provider.domain
-    private String domain;
-    // -> provider.port
-    private String port;
+
+    private String domain; // -> provider.domain
+    private String port; // -> provider.port
 
     public String getDomain() {
         return domain;

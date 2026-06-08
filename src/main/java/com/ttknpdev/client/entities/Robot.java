@@ -1,6 +1,5 @@
 package com.ttknpdev.client.entities;
 
-
 public class Robot {
     private Long rid;
     private String codename;
@@ -8,13 +7,15 @@ public class Robot {
     private Double price;
     private Boolean status;
 
-
     public Robot(Long rid, String codename, String releaseDate, Double price, Boolean status) {
         this.rid = rid;
         this.codename = codename;
         this.releaseDate = releaseDate;
         this.price = price;
         this.status = status;
+    }
+
+    public Robot() {
     }
 
     public Long getRid() {

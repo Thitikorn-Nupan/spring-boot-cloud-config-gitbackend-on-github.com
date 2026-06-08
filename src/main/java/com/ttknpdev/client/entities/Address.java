@@ -15,6 +15,9 @@ public class Address {
         this.details = details;
     }
 
+    public Address() {
+    }
+
     public Long getAid() {
         return aid;
     }

@@ -1,6 +1,5 @@
 package com.ttknpdev.client.service;
 
-import com.ttknpdev.client.entities.Address;
 import com.ttknpdev.client.entities.Robot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -12,13 +11,15 @@ import java.util.List;
 
 @Service
 public class RobotServiceResponse {
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
     private HttpHeaders headers;
     private HttpEntity entity;
+
     @Autowired
     public RobotServiceResponse(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+
     public List<Robot> reads(String urlReads) {
         Robot[] objects = restTemplate.getForObject(urlReads, Robot[].class);
         List<Robot> robots = null;
@@ -37,7 +38,7 @@ public class RobotServiceResponse {
         // *** way to pass json body on request
         headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        Robot robotResponse = restTemplate.postForObject(urlCreate ,robot, Robot.class);
+        Robot robotResponse = restTemplate.postForObject(urlCreate, robot, Robot.class);
         return robotResponse;
     }
 
@@ -53,4 +54,5 @@ public class RobotServiceResponse {
         ResponseEntity<Robot> response = restTemplate.exchange(urlUpdate, HttpMethod.PUT, entity, Robot.class);
         return response.getBody();
     }
+
 }
